@@ -12,7 +12,7 @@ O cadastro do  deve solicitar código do livro, titulo, autor, data. O programa 
   (desafio) A tabela de livros deve apresentar quantos livros com o mesmo titulo existem na loja
 
 */
-/**ainda não funcionou a pesquisa por autor  */
+
 
 import { useState } from "react";
 import './App.css';
@@ -44,7 +44,19 @@ function App() {
     limparForm();
   }
   
+  function qtdTitulo(titulo){
+    let qtdDesseTitulo = 0
+    livros.forEach((livro) =>{
+      if(livro.titulo = titulo){
+        qtdDesseTitulo ++;
+      }
+    }
+    )
+    return qtdDesseTitulo
+  }
+
   function pesquisar(){
+
 
     if(!codigoPesquisa && !autorPesquisa) {
       setCodigoPesquisa('');
@@ -175,6 +187,7 @@ function App() {
                 <th>Titulo</th>
                 <th>Autor</th>
                 <th>Data</th>
+                <th>Quantidade</th>
               </tr>
               {livros.map((livro) => {
                 return (
@@ -183,6 +196,7 @@ function App() {
                     <td>{livro.titulo}</td>
                     <td>{livro.autor}</td>
                     <td>{livro.data}</td>
+                    <td>{qtdTitulo(livro.titulo)}</td>
                     <td>
                       <button onClick={() => {excluir(livro.codigo)}}>
                         <HiX/>
